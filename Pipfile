@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+requests = "*"
+pymessenger = "*"
+flask-ngrok = "*"
+django-environ = "*"
+pytz = "*"
+sqlalchemy = "==1.3.24"
+fbmessenger = "*"
+fake-useragent = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+dev ="python chatbot/app.py"

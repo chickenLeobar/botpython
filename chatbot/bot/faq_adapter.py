@@ -1,10 +1,10 @@
 from datetime import datetime
 from chatterbot.logic import LogicAdapter
 from chatterbot.conversation import Statement
-from sqlalchemy.sql.functions import count
+from chatterbot.exceptions import OptionalDependencyImportError
 
 
-class TestLogicAdapter(LogicAdapter):
+class FaqAdapter(LogicAdapter):
     """
     The TimeLogicAdapter returns the current time.
     :kwargs:
@@ -26,34 +26,33 @@ class TestLogicAdapter(LogicAdapter):
                 'Please install "nltk" before using the TimeLogicAdapter:\n'
                 'pip3 install nltk'
             )
-            raise Exception(message)
+            raise OptionalDependencyImportError(message)
 
         self.positive = kwargs.get('positive', [
-            'que hora es',
-            'hola , que hora es',
-            'me puedes deci la hora',
-            'que dia es hoy',
-            'dime la hora',
-            'la hora'
+            'what time is it',
+            'hey what time is it',
+            'do you have the time',
+            'do you know the time',
+            'do you know what time it is',
+            'what is the time'
         ])
 
         self.negative = kwargs.get('negative', [
-            'cual es el tiempo para ir a dormir',
-            'cual es tu color favorito',
-            'tengo un buen dia',
-            'este es mi dia favorito',
-            'hoy la pase genial',
-            'que lindo dia tuve hoy'
-            'esto es ahora',
-            "sabes sumar"
+            'it is time to go to sleep',
+            'what is your favorite color',
+            'i had a great time',
+            'thyme is my favorite herb',
+            'do you have time to look at my essay',
+            'how do you have the time to do all this'
+            'what is it'
         ])
 
         labeled_data = (
-                [
-                    (name, 0) for name in self.negative
-                ] + [
-                    (name, 1) for name in self.positive
-                ]
+            [
+                (name, 0) for name in self.negative
+            ] + [
+                (name, 1) for name in self.positive
+            ]
         )
 
         train_set = [
@@ -92,10 +91,11 @@ class TestLogicAdapter(LogicAdapter):
 
     def process(self, statement, additional_response_selection_parameters=None):
         now = datetime.now()
+
         time_features = self.time_question_features(statement.text.lower())
         confidence = self.classifier.classify(time_features)
-        response = Statement(text='La hora es ' + now.strftime('%I:%M %p'))
-        print(confidence)
+        response = Statement(text='The current time is ' +
+                             now.strftime('%I:%M %p'))
 
         response.confidence = confidence
         return response

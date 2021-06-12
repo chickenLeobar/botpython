@@ -1,0 +1,25 @@
+{
+   "products":[
+      {
+         "name":"Polo",
+         "description":"Polo negro",
+         "url" : "https://www.comunicae.es/nota/motivos-por-los-que-un-polo-es-la-mejor-1215871/",
+         "image":"https://static.comunicae.com/photos/notas/1215871/1593075056_polo.png",
+          "price" : 50
+      },
+      {
+         "name":"Mochila azul",
+         "description":"Mochila azul puma",
+         "url" : "https://www.levelthreevip.top/products.aspx?cid=64&cname=mochila+azul+puma",
+         "image":"https://resources.claroshop.com/medios-plazavip/fotos/productos_sears1/original/2906407.jpg",
+        "price" : 120
+      },
+      {
+         "name":"Zapatillas",
+         "description":"Zapatillas adidas",
+         "url" : "https://www.adidas.pe/zapatillas-galaxar-run/FX6887.html",
+         "image":"https://http2.mlstatic.com/zapatillas-adidas-xpl-r-hombre-2019-D_NQ_NP_829128-MCO29213250492_012019-F.jpg",
+        "price" : 350
+      }
+   ]
+}
